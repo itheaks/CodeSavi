@@ -1,0 +1,259 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: #ffc0cb;
+  }
+  
+  header {
+    background-color: #00ffff;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  #main {
+    transition: margin-left .5s;
+    padding: 16px;
+  }
+  
+
+
+.menu-icon {
+    display: block;
+    cursor: pointer;
+  }
+  
+  .line {
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    margin: 3px 0;
+  }
+  
+  .mobile-nav {
+    display: none; 
+  }
+  
+
+  
+  @media screen and (max-width: 768px) {
+    .menu-icon {
+      display: block;
+      cursor: pointer;
+    }
+  
+    .mobile-nav {
+      display: block; 
+    }
+  }
+  
+  
+  .nav-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .nav-list li {
+    margin-bottom: 10px;
+  }
+  
+  .nav-list a {
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    padding: 8px;
+    transition: background-color 0.3s;
+  }
+  
+  .nav-list a:hover {
+    background-color: #444;
+  }
+
+.intro {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+    padding: 80px 0;
+  }
+  
+  .intro-image {
+    width: 300px;
+    height: 200px; 
+    border-radius: 20px; 
+    overflow: hidden; 
+  }
+  
+  .intro-image img {
+    width: 100%; 
+    height: 100%;
+    object-fit: cover; 
+  }
+  
+  .intro-text {
+    max-width: 60%;
+    text-align: center; 
+    margin-top: 20px; 
+  }
+  
+
+  @media screen and (max-width: 768px) {
+    .intro {
+      padding: 40px 0; 
+    }
+  
+    .intro-image {
+      width: 200px; 
+      height: 150px; 
+    }
+  }
+  
+  .problem-statement {
+    background-color: #1a1a1a;
+    padding: 40px 0;
+    text-align: center;
+  }
+  
+  .problem-statement h2 {
+    margin-bottom: 20px;
+  }
+  
+  .solutions {
+    background-color: #333;
+    padding: 40px 0;
+    text-align: center;
+  }
+  
+  .solution-card {
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+  }
+  
+  .solution-card h3 {
+    margin-top: 0;
+  }
+  
+  .initiatives {
+    background-color: #1a1a1a;
+    padding: 40px 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+  
+  .initiatives h2 {
+    margin-bottom: 20px;
+  }
+  
+  .initiative-carousel {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 20px 0;
+    scroll-behavior: smooth;
+    justify-content: flex-start; 
+  }
+  
+  .initiative-card {
+    background-color: #333;
+    border-radius: 10px;
+    width: 25%; 
+    margin-right: 20px;
+    overflow: hidden;
+    flex-shrink: 0; 
+  }
+  
+  .initiative-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .initiative-info {
+    padding: 20px;
+  }
+  
+  .initiative-info h3 {
+    margin-top: 0;
+  }
+  
+
+  @media (max-width: 768px) {
+    .initiative-carousel {
+      justify-content: center; 
+      padding: 20px;
+    }
+  
+    .initiative-card {
+      width: 90%; 
+      margin-right: 0;
+      margin-bottom: 20px; 
+    }
+  }
+  
+  
+  .goals {
+    padding: 40px 0;
+    text-align: center;
+  }
+  
+  .goals h2 {
+    margin-bottom: 20px;
+  }
+  
+
+  footer {
+    background-color: #00ffff;
+    text-align: center;
+    padding: 10px 0;
+  }
+  
+
+  @media screen and (max-width: 768px) {
+    .intro {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .intro-text {
+      max-width: 100%;
+    }
+
+    .problem-statement,
+    .solutions,
+    .initiatives,
+    .goals {
+      padding: 20px;
+    }
+  
+    .initiative-card {
+      width: 100%;
+      margin: 10px 0;
+      display: inline-block;
+      vertical-align: top;
+    }
+  }
+
+  .cta-button,
+  .card,
+  .initiative-card {
+    transition: transform 0.3s;
+  }
+  
+  .cta-button:hover,
+  .card:hover,
+  .initiative-card:hover {
+    transform: scale(1.05);
+  }
+
