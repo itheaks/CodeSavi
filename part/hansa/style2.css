@@ -1,0 +1,39 @@
+body{
+    background-color: black;
+}
+h1{
+    font-size: 60px;
+    font-style: serif garamond;
+    color: rgb(242, 12, 123); 
+
+}
+h2{
+    font-size: 40px;
+    color:rgb(242, 12, 123); 
+    margin-right: 50px;
+}
+p{
+    font-size: 30px;
+     color: aliceblue;
+    
+    }
+     .th{
+        display: flex;
+        background-image: url("https://asa.com/wordpress/wp-content/uploads/2015/04/2015-04-20-Mega-Expedition-Text.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 900px;
+        
+        width: 1250px;
+        margin-bottom: 50px;
+    }
+    #t{
+        margin-left: 20px;
+        color: rgb(7, 7, 7);
+        padding-left: 60px;
+        }
+        #h{
+            height: 300px;
+            width: 300px;
+            margin-left: 490px;
+        }
