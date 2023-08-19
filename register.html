@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #000;
+            background-image: url("place.avif");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-blend-mode: multiply;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ff6b6b;
+            font-size: 40px;
+            text-decoration: underline;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        form {
+            margin: 10% auto;
+            padding: 30px;
+            width: 350px;
+            background-color: #fff;
+            border-radius: 20px;
+        }
+
+        input {
+            padding: 10px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #ff6b6b;
+            color: white;
+            padding: 10px 20px;
+            margin: 20px auto;
+            border-radius: 10px;
+            font-family: Arial;
+            font-size: 12px;
+            font-weight: bold;
+            box-sizing: border-box;
+            border: none;
+            display: block;
+            width: 100px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Register For The Event Now!</h1>
+    <div class="flex justify-center items-center min-h-screen">
+        <form class="shadow-lg">
+            <label class="text-white">Name:</label>
+            <input class="block w-full p-2 rounded-md bg-gray-800 text-white" type="text" placeholder="Enter Your Name:" required>
+
+            <label class="text-white">DOB:</label>
+            <input class="block w-full p-2 rounded-md bg-gray-800 text-white" type="date" placeholder="Enter Date Of Birth." required>
+
+            <label class="text-white">Email id:</label>
+            <input class="block w-full p-2 rounded-md bg-gray-800 text-white" type="email" placeholder="Enter Email id" required>
+
+            <label class="text-white">Phone Number:</label>
+            <input class="block w-full p-2 rounded-md bg-gray-800 text-white" type="number" placeholder="Enter Your Phone Number:" required>
+
+            <label class="text-pink">
+                <input type="checkbox" class="mr-1" required>
+                I agree to all the terms & conditions
+            </label>
+            <button class="mt-4">Register</button>
+        </form>
+    </div>
+    <script>
+        const express = require('express');
+const { MongoClient } = require('mongodb');
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+const dbName = 'devsprints';
+const collectionName = 'codesavi';
+const mongoUrl = 'mongodb://localhost:27017/' + dbName;
+
+app.use(express.static('public'));
+app.use(express.json());
+
+let db, collection;
+
+async function connectToDatabase() {
+  const client = new MongoClient(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true });
+  await client.connect();
+  db = client.db(dbName);
+  collection = db.collection(collectionName);
+  console.log('Connected to MongoDB');
+}
+
+app.post('/register', async (req, res) => {
+  try {
+    const data = req.body;
+    await collection.insertOne(data);
+    res.status(201).json({ message: 'Registration successful' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+connectToDatabase().then(() => {
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
+});
+
+    </script>
+</body>
+</html>

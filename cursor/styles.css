@@ -1,0 +1,7 @@
+.custom-cursor {
+    cursor: url('one.png'), auto;
+}
+
+.custom-cursor.clicked {
+    cursor: url('two.png'), auto;
+}

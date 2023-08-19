@@ -3,13 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" type="text/css" href="styles.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
   <title>Life Below Water</title>
 </head>
 <body>
     <header class="bg-cyan-500 p-4">
-        <h1 class="text-pink-500 text-3xl font-bold">Life Below Water: Conserve and Sustainably Use Marine Resources</h1>
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="events.html">Events</a>
+  <a href="blog.html">Blogs</a>
+  <a href="register.html">Register</a>
+  <a href="feedback.html">Feedback</a>
+</div>
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span><h1 class="text-pink-500 text-3xl font-bold">Life Below Water: Conserve and Sustainably Use Marine Resources</h1>
     </header>
   <main>
     <section class="intro flex justify-between items-center p-8">
@@ -47,7 +54,7 @@
             <div class="initiative-info">
               <h3 class="text-pink-500 font-semibold">Plastic-Free Oceans</h3>
               <p>Join our campaign to reduce plastic waste in our oceans and save marine life.</p>
-              <a href="#" class="cta-link bg-pink-500 text-gray-900 rounded px-4 py-2 block mt-4">Learn More</a>
+              <a href="part/part1/part1.html" class="cta-link bg-pink-500 text-gray-900 rounded px-4 py-2 block mt-4">Learn More</a>
             </div>
           </div>
           <div class="initiative-card w-64 p-4 bg-gray-800 rounded">
@@ -55,7 +62,7 @@
             <div class="initiative-info">
               <h3 class="text-pink-500 font-semibold">Marine Conservation Zones</h3>
               <p>Learn about our efforts to create protected zones for marine biodiversity.</p>
-              <a href="#" class="cta-link bg-pink-500 text-gray-900 rounded px-4 py-2 block mt-4">Learn More</a>
+              <a href="part/part1/part1.html" class="cta-link bg-pink-500 text-gray-900 rounded px-4 py-2 block mt-4">Learn More</a>
             </div>
           </div>
           <div class="initiative-card w-64 p-4 bg-gray-800 rounded">
@@ -63,7 +70,7 @@
             <div class="initiative-info">
               <h3 class="text-pink-500 font-semibold">Sustainable Fishing Practices</h3>
               <p>Support our efforts to promote responsible fishing practices and protect fish stocks.</p>
-              <a href="#" class="cta-link bg-pink-500 text-gray-900 rounded px-4 py-2 block mt-4">Learn More</a>
+              <a href="part/part1/part1.html" class="cta-link bg-pink-500 text-gray-900 rounded px-4 py-2 block mt-4">Learn More</a>
             </div>
           </div>
           <div class="initiative-card w-64 p-4 bg-gray-800 rounded">
@@ -71,7 +78,7 @@
             <div class="initiative-info">
               <h3 class="text-pink-500 font-semibold">Ocean Cleanup Expeditions</h3>
               <p>Join us on expeditions to clean up plastic pollution from coastlines and oceans.</p>
-              <a href="#" class="cta-link bg-pink-500 text-gray-900 rounded px-4 py-2 block mt-4">Learn More</a>
+              <a href="part/part1/part1.html" class="cta-link bg-pink-500 text-gray-900 rounded px-4 py-2 block mt-4">Learn More</a>
             </div>
           </div>
         </div>
@@ -89,5 +96,93 @@
   <footer class="bg-cyan-500 text-center py-2">
     <p class="text-pink-500">&copy; 2023 Life Below Water. All rights reserved.</p>
   </footer>
+
+  <script>
+    function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+  }
+  
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+  }
+  document.addEventListener("DOMContentLoaded", function () {
+    var clickableElement = document.getElementById("clickable");
+    
+    clickableElement.addEventListener("click", function () {
+        clickableElement.style.cursor = "url('two.png'), auto";
+    });
+
+    clickableElement.addEventListener("mouseleave", function () {
+        clickableElement.style.cursor = "url('one.png'), auto";
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+        document.body.style.cursor = "url('one.png'), auto";
+    });
+// server.js
+const http = require('http');
+const MongoClient = require('mongodb').MongoClient;
+
+const PORT = process.env.PORT || 3000;
+const dbName = 'devsprints';
+const collectionName = 'codesavi';
+const mongoUrl = 'mongodb://localhost:27017/' + dbName;
+const client = new MongoClient(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true });
+
+// Connect to the MongoDB
+async function connectToDatabase() {
+  try {
+    await client.connect();
+    console.log('Connected to MongoDB');
+  } catch (error) {
+    console.error('MongoDB connection error:', error);
+    // Handle the error, potentially stop the server or take other actions
+  }
+}
+
+// Create a simple HTTP server
+const server = http.createServer(async (req, res) => {
+  if (req.method === 'POST' && req.url === '/register') {
+    try {
+      let body = '';
+      req.on('data', (chunk) => {
+        body += chunk;
+      });
+
+      req.on('end', async () => {
+        const data = JSON.parse(body);
+
+        const db = client.db(dbName);
+        const collection = db.collection(collectionName);
+
+        // Insert the data into the collection
+        await collection.insertOne(data);
+
+        res.writeHead(201, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ message: 'Data added successfully' }));
+      });
+    } catch (error) {
+      console.error(error);
+      res.writeHead(500, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ message: 'Internal server error' }));
+    }
+  } else {
+    res.writeHead(404, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ message: 'Not Found' }));
+  }
+});
+
+// Start the server
+connectToDatabase().then(() => {
+  server.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
+});
+
+
+  </script>
 </body>
 </html>
